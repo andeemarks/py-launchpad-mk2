@@ -38,6 +38,9 @@ def row_on(lpad, row, color):
 def col_on(lpad, col, color):
     lpad.send(mido.Message(SYSEX, data=SYSEX_HEADER + (12, col, color), time=TIME))
 
+def scroll_text(lpad, text, color):
+    lpad.send(mido.Message(SYSEX, data=SYSEX_HEADER + (20, color, 0) + tuple([ord(ch) for ch in text]), time=TIME))
+
 lpad = mido.open_output('Launchpad MK2 MIDI 1')
 
 for cell_offset in range(0, 9 * 9):
@@ -70,5 +73,9 @@ row_on(lpad, 3, random.randint(0, 127))
 time.sleep(1)
 
 col_on(lpad, 5, random.randint(0, 127))
+
+time.sleep(1)
+
+scroll_text(lpad, "Andy rocks!", random.randint(0, 127))
 
 lpad.close()
