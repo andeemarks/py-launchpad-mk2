@@ -1,7 +1,7 @@
 import time
 
 from launchpad.launchpad import Launchpad
-from launchpad.colour import BRIGHT_MAX, random_colour
+from launchpad.colour import Colour
 
 def pause():
     time.sleep(1)
@@ -12,17 +12,17 @@ def input_handler(message):
 
 lpad = Launchpad(input_handler)
 for cell_offset in range(0, 9 * 9):
-    lpad.cell_on(cell_offset, random_colour())
+    lpad.cell_on(cell_offset, Colour.random())
 
 pause()
 
 for cell_offset in range(0, 9 * 9):
-    lpad.cell_flash(cell_offset, random_colour())
+    lpad.cell_flash(cell_offset, Colour.random())
 
 pause()
 
 for cell_offset in range(0, 9 * 9):
-    lpad.cell_pulse(cell_offset, random_colour())
+    lpad.cell_pulse(cell_offset, Colour.random())
 
 pause()
 
@@ -31,23 +31,23 @@ for cell_offset in range(0, 9 * 9):
 
 pause()
 
-lpad.grid_on(random_colour())
+lpad.grid_on(Colour.random())
 
 pause()
 
-lpad.row_on(3, random_colour())
+lpad.row_on(3, Colour.random())
 
 pause()
 
-lpad.col_on(5, random_colour())
+lpad.col_on(5, Colour.random())
 
 pause()
 
-lpad.scroll_text("Andy", random_colour())
+lpad.scroll_text("Andy", Colour.random())
 
 pause()
 
-lpad.loop_text("rocks!", random_colour())
+lpad.loop_text("rocks!", Colour.random())
 
 pause()
 
@@ -57,7 +57,7 @@ pause()
 
 lpad.clear()
 
-lpad.cell_rgb(6, 2, BRIGHT_MAX, BRIGHT_MAX, 0)
+lpad.cell_rgb(6, 2, Colour.random_rgb_element(), Colour.random_rgb_element(), Colour.random_rgb_element())
 
 pause()
 
