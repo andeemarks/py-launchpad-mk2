@@ -12,9 +12,6 @@ FIRST_PAD = 11
 SYSEX_HEADER = (0, 32, 41, 2, 24)
 BRIGHT_MAX = 63
 
-def clear_grid(lpad):
-    lpad.send(mido.Message('sysex', data=[240, 0, 32, 41, 2, 24, 14, 247]))
-
 def cell_on(lpad, cell_offset, color):
     lpad.send(mido.Message(NOTE_ON, note=FIRST_PAD + cell_offset, channel=CHANNEL, velocity=color, time=TIME))
 
@@ -29,6 +26,9 @@ def cell_pulse(lpad, x, y, color):
 
 def coordinate_pair_to_index(x,y): 
     return x + (10 * y)
+
+def clear_grid(lpad):
+    lpad.send(mido.Message(SYSEX, data=SYSEX_HEADER + (14, 0), time=TIME))
 
 def grid_on(lpad, color):
     lpad.send(mido.Message(SYSEX, data=SYSEX_HEADER + (14, color), time=TIME))
@@ -98,6 +98,7 @@ loop_stop(lpad)
 
 time.sleep(1)
 
+clear_grid(lpad)
 cell_rgb(lpad, 6, 2, BRIGHT_MAX, BRIGHT_MAX, 0)
 
 lpad.close()
