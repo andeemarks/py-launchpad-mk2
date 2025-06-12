@@ -10,6 +10,7 @@ VELOCITY = 81
 TIME = 0
 FIRST_PAD = 11
 SYSEX_HEADER = (0, 32, 41, 2, 24)
+BRIGHT_MAX = 63
 
 def clear_grid(lpad):
     lpad.send(mido.Message('sysex', data=[240, 0, 32, 41, 2, 24, 14, 247]))
@@ -46,6 +47,9 @@ def loop_text(lpad, text, color):
 
 def loop_stop(lpad):
     lpad.send(mido.Message(SYSEX, data=SYSEX_HEADER + (20, ), time=TIME))
+
+def cell_rgb(lpad, x, y, r, g, b):
+    lpad.send(mido.Message(SYSEX, data=SYSEX_HEADER + (11, coordinate_pair_to_index(x, y), r, g, b), time=TIME))
 
 lpad = mido.open_output('Launchpad MK2 MIDI 1')
 
@@ -91,5 +95,9 @@ loop_text(lpad, "rocks!", random.randint(0, 127))
 time.sleep(1)
 
 loop_stop(lpad)
+
+time.sleep(1)
+
+cell_rgb(lpad, 6, 2, BRIGHT_MAX, BRIGHT_MAX, 0)
 
 lpad.close()
