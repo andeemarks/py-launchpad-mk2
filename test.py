@@ -2,8 +2,7 @@ import random
 import time
 
 from launchpad.launchpad import Launchpad
-
-BRIGHT_MAX = 63
+from launchpad.colour import BRIGHT_MAX
 
 lpad = Launchpad()
 for cell_offset in range(0, 9 * 9):
@@ -50,10 +49,10 @@ lpad.loop_stop()
 
 time.sleep(1)
 
-lpad.clear_grid()
+lpad.clear()
 
 lpad.cell_rgb(6, 2, BRIGHT_MAX, BRIGHT_MAX, 0)
 
 time.sleep(1)
 
-lpad.clear_grid()
+lpad.clear()

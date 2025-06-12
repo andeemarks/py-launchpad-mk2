@@ -1,0 +1,2 @@
+
+BRIGHT_MAX = 63

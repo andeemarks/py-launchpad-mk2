@@ -26,7 +26,7 @@ class Launchpad():
     def cell_pulse(self, cell_offset, color):
         self.lpad.send(PulseMessage(cell_offset, color))
 
-    def clear_grid(self):
+    def clear(self):
         message = SysexMessage()
         message.data += (14, 0)
         self.lpad.send(message)
