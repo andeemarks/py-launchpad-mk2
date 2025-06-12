@@ -2,13 +2,14 @@ import time
 
 from launchpad.launchpad import Launchpad
 from launchpad.colour import Colour
+from launchpad.pad import PadInput
 
 def pause():
     time.sleep(1)
 
 
-def input_handler(message):
-    print(f'input: {message}')
+def input_handler(message: PadInput):
+    print(message.x_y())
 
 lpad = Launchpad(input_handler)
 for cell_offset in range(0, 9 * 9):

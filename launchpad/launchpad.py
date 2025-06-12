@@ -2,6 +2,7 @@ import mido
 
 from .message import BasicMessage, FlashMessage, SysexMessage, PulseMessage
 from .colour import Colour
+from .pad import PadInput
 
 from enum import Enum
 
@@ -20,10 +21,14 @@ class Launchpad():
     def __init__(self, input_handler_callback=None):
         self.output = mido.open_output(self.DEVICE_NAME)
         self.input = mido.open_input(self.DEVICE_NAME)
-        self.input.callback = (input_handler_callback or self.handler)
+        self.input_handler_callback = input_handler_callback
+        self.input.callback = self.handler
 
-    def handler(self, message):
-        print(message)
+    def handler(self, message: mido.Message):
+        if (self.input_handler_callback):
+            self.input_handler_callback(PadInput(message))
+        else: 
+            print(message)
 
     def coordinate_pair_to_index(self, x,y): 
         return x + (10 * y)
