@@ -6,7 +6,11 @@ from launchpad.colour import BRIGHT_MAX, random_colour
 def pause():
     time.sleep(1)
 
-lpad = Launchpad()
+
+def input_handler(message):
+    print(f'input: {message}')
+
+lpad = Launchpad(input_handler)
 for cell_offset in range(0, 9 * 9):
     lpad.cell_on(cell_offset, random_colour())
 
