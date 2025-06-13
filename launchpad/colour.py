@@ -1,6 +1,13 @@
 import random
+from enum import IntEnum
 
-class Colour:
+class Colour(IntEnum):
+    RED = 5
+    BLUE = 45
+    GREEN = 21
+    WHITE = 3
+    YELLOW = 13
+
     @staticmethod
     def random():
         return random.randint(0, 127)
