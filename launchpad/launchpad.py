@@ -82,5 +82,5 @@ class Launchpad():
 
     def cell_rgb(self, x: Col, y: Row, r, g, b):
         message = SysexMessage()
-        message.data += (11, self.coordinate_pair_to_index(x, y), r, g, b)
+        message.data += (11, 11 + self.coordinate_pair_to_index(x, y), r, g, b)
         self.output.send(message)
