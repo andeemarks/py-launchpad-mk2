@@ -6,7 +6,7 @@ from launchpad.colour import Colour
 
 def input_handler(message: PadInput):
     (x, y) = message.x_y()
-    lpad.scroll_text(f'{(y * 8) + x}', Colour.WHITE)
+    lpad.cell_on(x + (10 * y), Colour.WHITE)
 
 def wipe_left_to_right():
     for x in range(8):
@@ -52,3 +52,7 @@ flash_border()
 pulse_middle()
 lpad.clear()
 brightness_quadrants()
+lpad.scroll_text("Touch me!", Colour.GREEN)
+lpad.clear()
+while (True):
+    pass
