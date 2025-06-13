@@ -2,7 +2,11 @@
 
 [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php)
 
-This library provides a Python interface to access the [Novation Launchpad MK2](https://global.novationmusic.com/launch/launchpad#) programmatically.  Using this library, you will be able to:
+This library provides a Python interface to access the [Novation Launchpad MK2](https://global.novationmusic.com/launch/launchpad#) programmatically.  
+
+![Novation Launchpad Mk2](./resources/lp-mk2.png)
+
+Using this library, you will be able to:
 
 - Light specified cells with up to 127 colours
 - Light rows and columns as single addressable units
@@ -11,8 +15,6 @@ This library provides a Python interface to access the [Novation Launchpad MK2](
 - Be notified when individual cells are pressed
 
 The code started life as a clone of [my Clojure repo](https://github.com/andeemarks/clj-launchpad-mk2) and uses the [mido](https://github.com/mido/mido) library for the low level MIDI integration.
-
-![Novation Launchpad Mk2](./resources/lp-mk2.png)
 
 ## More Info
 
