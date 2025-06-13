@@ -18,6 +18,10 @@ To see how to display colours on specific cells and handle button presses...
 
 ```python -m demo.colours```
 
+To see the main lighting functions (and some more button handling)...
+
+```python -m demo.demo```
+
 ## Copyright
 
 Copyright (c) 2025 Andy Marks. See LICENSE for details.
