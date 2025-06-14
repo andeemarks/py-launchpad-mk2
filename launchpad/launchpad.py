@@ -3,6 +3,7 @@ import mido
 from .message import BasicMessage, FlashMessage, SysexMessage, PulseMessage
 from .colour import Colour
 from .pad import PadInput
+from .coord import Coord
 
 from enum import Enum
 
@@ -30,20 +31,20 @@ class Launchpad():
         else: 
             print(message)
 
-    def coordinate_pair_to_index(self, x,y): 
+    def x_y_to_offset(self, x,y) -> int: 
         return x + (10 * y)
 
-    def cell_on(self, cell_offset, colour: Colour):
-        self.output.send(BasicMessage(cell_offset, colour))
+    def cell_on(self, coord: Coord, colour: Colour):
+        self.output.send(BasicMessage(coord, colour))
 
-    def cell_off(self, cell_offset):
-        self.output.send(BasicMessage(cell_offset))
+    def cell_off(self, coord: Coord):
+        self.output.send(BasicMessage(coord))
 
-    def cell_flash(self, cell_offset, colour: Colour):
-        self.output.send(FlashMessage(cell_offset, colour))
+    def cell_flash(self, coord: Coord, colour: Colour):
+        self.output.send(FlashMessage(coord, colour))
 
-    def cell_pulse(self, cell_offset, colour: Colour):
-        self.output.send(PulseMessage(cell_offset, colour))
+    def cell_pulse(self, coord: Coord, colour: Colour):
+        self.output.send(PulseMessage(coord, colour))
 
     def clear(self):
         message = SysexMessage()
@@ -80,7 +81,7 @@ class Launchpad():
         message.data += (20, )
         self.output.send(message)
 
-    def cell_rgb(self, x: Col, y: Row, r, g, b):
+    def cell_rgb(self, coord: Coord, r, g, b):
         message = SysexMessage()
-        message.data += (11, 11 + self.coordinate_pair_to_index(x, y), r, g, b)
+        message.data += (11, 11 + coord.to_offset(), r, g, b)
         self.output.send(message)

@@ -1,12 +1,13 @@
 import time
 
 from launchpad.launchpad import Launchpad
+from launchpad.coord import Coord
 from launchpad.pad import PadInput
 from launchpad.colour import Colour
 
 def input_handler(message: PadInput):
-    (x, y) = message.x_y()
-    lpad.cell_on(x + (10 * y), Colour.WHITE)
+    coord: Coord = message.x_y()
+    lpad.cell_on(coord, Colour.WHITE)
 
 def wipe_left_to_right():
     for x in range(8):
@@ -21,26 +22,26 @@ def wipe_top_to_bottom():
 
 def flash_border():
     for y in range(8):
-        lpad.cell_flash(0 * 10 + y, 60)
-        lpad.cell_flash(7 * 10 + y, 60)
+        lpad.cell_flash(Coord(0, y), 60)
+        lpad.cell_flash(Coord(7, y), 60)
     for x in range(8):
-        lpad.cell_flash(x * 10 + 0, 60)
-        lpad.cell_flash(x * 10 + 7, 60)
+        lpad.cell_flash(Coord(x, 0), 60)
+        lpad.cell_flash(Coord(x, 7), 60)
 
 def pulse_middle():
     for x in range(1, 7):
         for y in range(1, 7):
-            lpad.cell_pulse(x * 10 + y, 60)
+            lpad.cell_pulse(Coord(x, y), 60)
     time.sleep(1)
 
 def brightness_quadrants():
     for x in range(0, 4):
         for y in range (0, 4):
             brightness = ((4 * y) + x) * 4
-            lpad.cell_rgb(x, y, brightness, 0, 0)
-            lpad.cell_rgb(x + 4, y, 0, brightness, 0)
-            lpad.cell_rgb(x, y + 4, 0, 0, brightness)
-            lpad.cell_rgb(x + 4, y + 4, brightness, brightness, brightness)
+            lpad.cell_rgb(Coord(x, y), brightness, 0, 0)
+            lpad.cell_rgb(Coord(x + 4, y), 0, brightness, 0)
+            lpad.cell_rgb(Coord(x, y + 4), 0, 0, brightness)
+            lpad.cell_rgb(Coord(x + 4, y + 4), brightness, brightness, brightness)
     time.sleep(2)
 
 lpad = Launchpad(input_handler)

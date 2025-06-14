@@ -1,5 +1,7 @@
 import mido
 
+from .coord import Coord
+
 class PadInput():
     def __init__(self, message: mido.Message):
         self.message = message
@@ -19,11 +21,11 @@ class PadInput():
     def time(self) -> int:
         return self.message.time
 
-    def x_y(self) -> (int, int):
+    def x_y(self) -> Coord:
         x = self.message.note % 10 - 1
         y = self.message.note // 10 - 1
 
-        return (x, y)
+        return Coord(x, y)
 
     def __str__(self) -> str:
         return self.message.__str__()        

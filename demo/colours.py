@@ -3,17 +3,19 @@ from datetime import datetime
 from launchpad.launchpad import Launchpad
 from launchpad.pad import PadInput
 from launchpad.colour import Colour
+from launchpad.coord import Coord
 
 def input_handler(message: PadInput):
-    (x, y) = message.x_y()
-    lpad.scroll_text(f'{(y * 8) + x}', Colour.WHITE)
+    coord: Coord = message.x_y()
+    lpad.scroll_text(f'{(coord.y * 8) + coord.x}', Colour.WHITE)
 
 lpad = Launchpad(input_handler)
 
 lpad.clear()
 
-for cell_offset in range(0, 9 * 9):
-    lpad.cell_on(cell_offset, cell_offset)
+for x in range(10):
+    for y in range(10):
+        lpad.cell_on(Coord(x,y), Colour.random())
 
 while (True):
     pass
