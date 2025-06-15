@@ -3,7 +3,7 @@ import time
 from launchpad.launchpad import Launchpad
 from launchpad.coord import Coord
 from launchpad.pad import PadInput
-from launchpad.colour import Colour
+from launchpad.colour import Colour, RGBColour
 
 def input_handler(message: PadInput):
     coord: Coord = message.x_y()
@@ -38,10 +38,10 @@ def brightness_quadrants():
     for x in range(0, 4):
         for y in range (0, 4):
             brightness = ((4 * y) + x) * 4
-            lpad.cell_rgb(Coord(x, y), brightness, 0, 0)
-            lpad.cell_rgb(Coord(x + 4, y), 0, brightness, 0)
-            lpad.cell_rgb(Coord(x, y + 4), 0, 0, brightness)
-            lpad.cell_rgb(Coord(x + 4, y + 4), brightness, brightness, brightness)
+            lpad.cell_rgb(Coord(x, y), RGBColour(brightness, 0, 0))
+            lpad.cell_rgb(Coord(x + 4, y), RGBColour(0, brightness, 0))
+            lpad.cell_rgb(Coord(x, y + 4), RGBColour(0, 0, brightness))
+            lpad.cell_rgb(Coord(x + 4, y + 4), RGBColour(brightness, brightness, brightness))
     time.sleep(2)
 
 lpad = Launchpad(input_handler)

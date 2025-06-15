@@ -71,6 +71,6 @@ time.sleep(1)
 print("Showing whites by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), coord_to_color(x, y), coord_to_color(x, y)))
+        lpad.cell_rgb(Coord(x,y), RGBColour.white(coord_to_color(x, y)))
 
 
