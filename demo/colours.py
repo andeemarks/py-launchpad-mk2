@@ -1,4 +1,4 @@
-from datetime import datetime
+import time
 
 from launchpad.launchpad import Launchpad
 from launchpad.pad import PadInput
@@ -13,9 +13,17 @@ lpad = Launchpad(input_handler)
 
 lpad.clear()
 
-for x in range(10):
-    for y in range(10):
-        lpad.cell_on(Coord(x,y), Colour.random())
+print("Showing colours 0-63...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_on(Coord(x,y), (y * 8) + x)
+
+time.sleep(2)
+
+print("Showing colours 64-127...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_on(Coord(x,y), (y * 8) + x + 64)
 
 while (True):
     pass
