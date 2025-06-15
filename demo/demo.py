@@ -55,5 +55,11 @@ lpad.clear()
 brightness_quadrants()
 lpad.scroll_text("Touch me!", Colour.GREEN)
 lpad.clear()
-while (True):
-    pass
+
+
+try:
+    while (True):
+        pass
+except KeyboardInterrupt:
+    print("Thanks for coming!")
+    exit()

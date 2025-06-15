@@ -25,5 +25,9 @@ for x in range(8):
     for y in range(8):
         lpad.cell_on(Coord(x,y), (y * 8) + x + 64)
 
-while (True):
-    pass
+try:
+    while (True):
+        pass
+except KeyboardInterrupt:
+    print("Thanks for coming!")
+    exit()
