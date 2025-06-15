@@ -2,7 +2,7 @@ import time
 
 from launchpad.launchpad import Launchpad
 from launchpad.pad import PadInput
-from launchpad.colour import Colour
+from launchpad.colour import Colour, RGBColour
 from launchpad.coord import Coord
 
 def coord_to_color(x: int, y: int) -> int:
@@ -29,48 +29,48 @@ time.sleep(1)
 print("Showing reds by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), 0, 0)
+        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, 0))
 
 time.sleep(1)
 
 print("Showing greens by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), 0, coord_to_color(x, y), 0)
+        lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), 0))
 
 time.sleep(1)
 
 print("Showing blues by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), 0, 0, coord_to_color(x, y))
+        lpad.cell_rgb(Coord(x,y), RGBColour(0, 0, coord_to_color(x, y)))
 
 time.sleep(1)
 
 print("Showing yellows by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), coord_to_color(x, y), 0)
+        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), coord_to_color(x, y), 0))
 
 time.sleep(1)
 
 print("Showing cyans by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), 0, coord_to_color(x, y), coord_to_color(x, y))
+        lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), coord_to_color(x, y)))
 
 time.sleep(1)
 
 print("Showing magentas by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), 0, coord_to_color(x, y))
+        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, coord_to_color(x, y)))
 
 time.sleep(1)
 
 print("Showing whites by RGB...")
 for x in range(8):
     for y in range(8):
-        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), coord_to_color(x, y), coord_to_color(x, y))
+        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), coord_to_color(x, y), coord_to_color(x, y)))
 
 

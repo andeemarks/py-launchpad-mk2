@@ -1,7 +1,7 @@
 import mido
 
 from .message import BasicMessage, FlashMessage, SysexMessage, PulseMessage
-from .colour import Colour
+from .colour import Colour, RGBColour
 from .pad import PadInput
 from .coord import Coord
 
@@ -66,12 +66,12 @@ class Launchpad():
         message.data += (12, col, colour)
         self.output.send(message)
 
-    def scroll_text(self, text, colour: Colour):
+    def scroll_text(self, text: str, colour: Colour):
         message = SysexMessage()
         message.data += (20, colour, 0) + tuple([ord(ch) for ch in text])
         self.output.send(message)
 
-    def loop_text(self, text, colour: Colour):
+    def loop_text(self, text: str, colour: Colour):
         message = SysexMessage()
         message.data += (20, colour, 1) + tuple([ord(ch) for ch in text])
         self.output.send(message)
@@ -81,7 +81,7 @@ class Launchpad():
         message.data += (20, )
         self.output.send(message)
 
-    def cell_rgb(self, coord: Coord, r, g, b):
+    def cell_rgb(self, coord: Coord, rgb: RGBColour):
         message = SysexMessage()
-        message.data += (11, 11 + coord.to_offset(), r, g, b)
+        message.data += (11, 11 + coord.to_offset(), rgb.r, rgb.g, rgb.b)
         self.output.send(message)

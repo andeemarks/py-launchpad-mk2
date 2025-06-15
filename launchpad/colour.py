@@ -11,8 +11,14 @@ class Colour(IntEnum):
     @staticmethod
     def random():
         return random.randint(0, 127)
+    
+class RGBColour():
+    def __init__(self, r: int, g: int, b: int):
+        self.r = r
+        self.g = g 
+        self.b = b 
 
     @staticmethod
-    def random_rgb_element():
+    def random_element() -> int:
         return random.randint(0, 63)
     
