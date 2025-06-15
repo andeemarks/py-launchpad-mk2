@@ -5,11 +5,10 @@ from launchpad.pad import PadInput
 from launchpad.colour import Colour
 from launchpad.coord import Coord
 
-def input_handler(message: PadInput):
-    coord: Coord = message.x_y()
-    lpad.scroll_text(f'{(coord.y * 8) + coord.x}', Colour.WHITE)
+def coord_to_color(x: int, y: int) -> int:
+    return (x * 8) + y
 
-lpad = Launchpad(input_handler)
+lpad = Launchpad()
 
 lpad.clear()
 
@@ -18,16 +17,60 @@ for x in range(8):
     for y in range(8):
         lpad.cell_on(Coord(x,y), (y * 8) + x)
 
-time.sleep(2)
+time.sleep(1)
 
 print("Showing colours 64-127...")
 for x in range(8):
     for y in range(8):
         lpad.cell_on(Coord(x,y), (y * 8) + x + 64)
 
-try:
-    while (True):
-        pass
-except KeyboardInterrupt:
-    print("Thanks for coming!")
-    exit()
+time.sleep(1)
+
+print("Showing reds by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), 0, 0)
+
+time.sleep(1)
+
+print("Showing greens by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), 0, coord_to_color(x, y), 0)
+
+time.sleep(1)
+
+print("Showing blues by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), 0, 0, coord_to_color(x, y))
+
+time.sleep(1)
+
+print("Showing yellows by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), coord_to_color(x, y), 0)
+
+time.sleep(1)
+
+print("Showing cyans by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), 0, coord_to_color(x, y), coord_to_color(x, y))
+
+time.sleep(1)
+
+print("Showing magentas by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), 0, coord_to_color(x, y))
+
+time.sleep(1)
+
+print("Showing whites by RGB...")
+for x in range(8):
+    for y in range(8):
+        lpad.cell_rgb(Coord(x,y), coord_to_color(x, y), coord_to_color(x, y), coord_to_color(x, y))
+
+
