@@ -7,69 +7,50 @@ from launchpad.coord import Coord
 def coord_to_color(x: int, y: int) -> int:
     return (x * 8) + y
 
+def do_to_grid(title: str, doer) -> None:
+    print(title)
+    for x in range(8):
+        for y in range(8):
+            doer(x, y)
+    time.sleep(1)
+
 lpad = Launchpad()
 
 lpad.clear()
 
-print("Showing colours 0-63...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_on(Coord(x,y), (y * 8) + x)
+def colours1(x, y):
+    lpad.cell_on(Coord(x,y), (y * 8) + x)
 
-time.sleep(1)
+def colours2(x, y):
+    lpad.cell_on(Coord(x,y), (y * 8) + x + 64)
 
-print("Showing colours 64-127...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_on(Coord(x,y), (y * 8) + x + 64)
+def reds(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, 0))
 
-time.sleep(1)
+def greens(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), 0))
 
-print("Showing reds by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, 0))
+def blues(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour(0, 0, coord_to_color(x, y)))
 
-time.sleep(1)
+def yellows(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), coord_to_color(x, y), 0))
 
-print("Showing greens by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), 0))
+def cyans(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), coord_to_color(x, y)))
 
-time.sleep(1)
+def magentas(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, coord_to_color(x, y)))
 
-print("Showing blues by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(0, 0, coord_to_color(x, y)))
+def whites(x, y):
+    lpad.cell_rgb(Coord(x,y), RGBColour.white(coord_to_color(x, y)))
 
-time.sleep(1)
-
-print("Showing yellows by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), coord_to_color(x, y), 0))
-
-time.sleep(1)
-
-print("Showing cyans by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), coord_to_color(x, y)))
-
-time.sleep(1)
-
-print("Showing magentas by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, coord_to_color(x, y)))
-
-time.sleep(1)
-
-print("Showing whites by RGB...")
-for x in range(8):
-    for y in range(8):
-        lpad.cell_rgb(Coord(x,y), RGBColour.white(coord_to_color(x, y)))
-
-
+do_to_grid("Showing colours 0-63...", colours1)
+do_to_grid("Showing colours 64-127...", colours2)
+do_to_grid("Showing reds by RGB...", reds)
+do_to_grid("Showing greens by RGB...", greens)
+do_to_grid("Showing blues by RGB...", blues)
+do_to_grid("Showing yellows by RGB...", yellows)
+do_to_grid("Showing cyans by RGB...", cyans)
+do_to_grid("Showing magentas by RGB...", magentas)
+do_to_grid("Showing whites by RGB...", whites)
