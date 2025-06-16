@@ -33,10 +33,10 @@ def brightness_quadrants():
     for x in range(0, 4):
         for y in range (0, 4):
             brightness = ((4 * y) + x) * 4
-            lpad.cell_rgb(Coord(x, y), RGBColour(brightness, 0, 0))
-            lpad.cell_rgb(Coord(x + 4, y), RGBColour(0, brightness, 0))
-            lpad.cell_rgb(Coord(x, y + 4), RGBColour(0, 0, brightness))
-            lpad.cell_rgb(Coord(x + 4, y + 4), RGBColour(brightness, brightness, brightness))
+            lpad.cell_rgb(Coord(x, y), RGBColour.from_red(brightness))
+            lpad.cell_rgb(Coord(x + 4, y), RGBColour.from_green(brightness))
+            lpad.cell_rgb(Coord(x, y + 4), RGBColour.from_blue(brightness))
+            lpad.cell_rgb(Coord(x + 4, y + 4), RGBColour.from_white(brightness))
     time.sleep(2)
 
 lpad = Launchpad()

@@ -14,31 +14,31 @@ class Colour(IntEnum):
 
 class RGBColour():
     @classmethod
-    def white(cls, white: int):
+    def from_white(cls, white: int):
         return cls(white, white, white)
 
     @classmethod
-    def red(cls, red: int):
+    def from_red(cls, red: int):
         return cls(red, 0, 0)
 
     @classmethod
-    def green(cls, green: int):
+    def from_green(cls, green: int):
         return cls(0, green, 0)
 
     @classmethod
-    def blue(cls, blue: int):
+    def from_blue(cls, blue: int):
         return cls(0, 0, blue)
 
     @classmethod
-    def cyan(cls, colour: int):
+    def from_cyan(cls, colour: int):
         return cls(0, colour, colour)
 
     @classmethod
-    def yellow(cls, colour: int):
+    def from_yellow(cls, colour: int):
         return cls(colour, colour, 0)
 
     @classmethod
-    def magenta(cls, colour: int):
+    def from_magenta(cls, colour: int):
         return cls(colour, 0, colour)
 
     def __init__(self, red: int, green: int, blue: int):
