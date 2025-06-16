@@ -26,13 +26,12 @@ class Launchpad():
         self.input.callback = self.handler
 
     def handler(self, message: mido.Message):
+        input = PadInput(message)
+                
         if (self.input_handler_callback):
-            self.input_handler_callback(PadInput(message))
+            self.input_handler_callback(input)
         else: 
             print(message)
-
-    def x_y_to_offset(self, x,y) -> int: 
-        return x + (10 * y)
 
     def cell_on(self, coord: Coord, colour: Colour):
         self.output.send(BasicMessage(coord, colour))

@@ -2,12 +2,7 @@ import time
 
 from launchpad.launchpad import Launchpad
 from launchpad.coord import Coord
-from launchpad.pad import PadInput
 from launchpad.colour import Colour, RGBColour
-
-def input_handler(message: PadInput):
-    coord: Coord = message.x_y()
-    lpad.cell_on(coord, Colour.WHITE)
 
 def wipe_left_to_right():
     for x in range(8):
@@ -44,7 +39,7 @@ def brightness_quadrants():
             lpad.cell_rgb(Coord(x + 4, y + 4), RGBColour(brightness, brightness, brightness))
     time.sleep(2)
 
-lpad = Launchpad(input_handler)
+lpad = Launchpad()
 
 lpad.clear()
 wipe_left_to_right()
@@ -54,12 +49,3 @@ pulse_middle()
 lpad.clear()
 brightness_quadrants()
 lpad.scroll_text("Touch me!", Colour.GREEN)
-lpad.clear()
-
-
-try:
-    while (True):
-        pass
-except KeyboardInterrupt:
-    print("Thanks for coming!")
-    exit()
