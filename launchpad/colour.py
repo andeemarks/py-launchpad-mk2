@@ -17,6 +17,30 @@ class RGBColour():
     def white(cls, white: int):
         return cls(white, white, white)
 
+    @classmethod
+    def red(cls, red: int):
+        return cls(red, 0, 0)
+
+    @classmethod
+    def green(cls, green: int):
+        return cls(0, green, 0)
+
+    @classmethod
+    def blue(cls, blue: int):
+        return cls(0, 0, blue)
+
+    @classmethod
+    def cyan(cls, colour: int):
+        return cls(0, colour, colour)
+
+    @classmethod
+    def yellow(cls, colour: int):
+        return cls(colour, colour, 0)
+
+    @classmethod
+    def magenta(cls, colour: int):
+        return cls(colour, 0, colour)
+
     def __init__(self, red: int, green: int, blue: int):
         if 0 > red >= 63:
             raise ValueError(f"red value ({red}) must bluee blueetween 0 and 63 inclusive")

@@ -25,22 +25,22 @@ def colours2(x, y):
     lpad.cell_on(Coord(x,y), (y * 8) + x + 64)
 
 def reds(x, y):
-    lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, 0))
+    lpad.cell_rgb(Coord(x,y), RGBColour.red(coord_to_color(x, y)))
 
 def greens(x, y):
-    lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), 0))
+    lpad.cell_rgb(Coord(x,y), RGBColour.green(coord_to_color(x, y)))
 
 def blues(x, y):
-    lpad.cell_rgb(Coord(x,y), RGBColour(0, 0, coord_to_color(x, y)))
+    lpad.cell_rgb(Coord(x,y), RGBColour.blue(coord_to_color(x, y)))
 
 def yellows(x, y):
-    lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), coord_to_color(x, y), 0))
+    lpad.cell_rgb(Coord(x,y), RGBColour.yellow(coord_to_color(x, y)))
 
 def cyans(x, y):
-    lpad.cell_rgb(Coord(x,y), RGBColour(0, coord_to_color(x, y), coord_to_color(x, y)))
+    lpad.cell_rgb(Coord(x,y), RGBColour.cyan(coord_to_color(x, y)))
 
 def magentas(x, y):
-    lpad.cell_rgb(Coord(x,y), RGBColour(coord_to_color(x, y), 0, coord_to_color(x, y)))
+    lpad.cell_rgb(Coord(x,y), RGBColour.magenta(coord_to_color(x, y)))
 
 def whites(x, y):
     lpad.cell_rgb(Coord(x,y), RGBColour.white(coord_to_color(x, y)))
