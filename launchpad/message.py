@@ -10,7 +10,11 @@ class BasicMessage(mido.Message):
     NOTE_ON = 'note_on'
 
     def __init__(self, coord: Coord, color=0, channel=CHANNEL):
-        super().__init__(self.NOTE_ON, note=self.FIRST_PAD + coord.to_offset(), channel=channel, velocity=color, time=TIME)
+        super().__init__(self.NOTE_ON,
+                            note=self.FIRST_PAD + coord.to_offset(),
+                            channel=channel,
+                            velocity=color,
+                            time=TIME)
 
 class FlashMessage(BasicMessage):
     def __init__(self, coord: Coord, color=0):

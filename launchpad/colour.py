@@ -11,25 +11,24 @@ class Colour(IntEnum):
     @staticmethod
     def random():
         return random.randint(0, 127)
-    
+
 class RGBColour():
     @classmethod
-    def white(cls, w: int):
-        return cls(w, w, w)
+    def white(cls, white: int):
+        return cls(white, white, white)
 
-    def __init__(self, r: int, g: int, b: int):
-        if 0 > r >= 63:
-            raise ValueError(f"red value ({r}) must be between 0 and 63 inclusive")
-        if 0 > g >= 63:
-            raise ValueError(f"green value ({g}) must be between 0 and 63 inclusive")
-        if 0 > b >= 63:
-            raise ValueError(f"blue value ({b}) must be between 0 and 63 inclusive")
+    def __init__(self, red: int, green: int, blue: int):
+        if 0 > red >= 63:
+            raise ValueError(f"red value ({red}) must bluee blueetween 0 and 63 inclusive")
+        if 0 > green >= 63:
+            raise ValueError(f"greenreen value ({green}) must bluee blueetween 0 and 63 inclusive")
+        if 0 > blue >= 63:
+            raise ValueError(f"bluelue value ({blue}) must bluee blueetween 0 and 63 inclusive")
 
-        self.r = r
-        self.g = g 
-        self.b = b 
+        self.red = red
+        self.green = green
+        self.blue = blue
 
     @staticmethod
     def random_element() -> int:
         return random.randint(0, 63)
-    

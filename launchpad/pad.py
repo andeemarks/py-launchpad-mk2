@@ -1,5 +1,4 @@
 import mido
-from abc import ABC, abstractmethod
 
 from .coord import Coord
 
@@ -8,7 +7,7 @@ class PadInput():
         self.message = message
 
         try:
-            self.velocity = message.velocity 
+            self.velocity = message.velocity
         except AttributeError:
             self.velocity = 0
 
@@ -18,7 +17,7 @@ class PadInput():
             self.channel = 0
 
         try:
-            self.note = message.note 
+            self.note = message.note
         except AttributeError:
             self.note = 0
 
@@ -38,43 +37,34 @@ class PadInput():
             self.value = 0
 
     def is_cursor_down(self) -> bool:
-        return (self.control == 105)
+        return self.control == 105
 
     def is_cursor_up(self) -> bool:
-        return (self.control == 104)
+        return self.control == 104
 
     def is_cursor_left(self) -> bool:
-        return (self.control == 106)
+        return self.control == 106
 
     def is_cursor_right(self) -> bool:
-        return (self.control == 107)
+        return self.control == 107
 
     def is_cursor_key(self) -> bool:
         return self.control in [104, 105, 106, 107]
-        
+
     def is_pad_down(self) -> bool:
         return (self.velocity == 127) | (self.value == 127)
-        
+
     def is_pad_up(self) -> bool:
         return not self.is_pad_down()
 
-    def channel(self) -> int:
-        return self.channel
-
-    def note(self) -> int:
-        return self.note
-
-    def time(self) -> int:
-        return self.time
-
     def x_y(self) -> Coord:
-        if (self.note > 0):
+        if self.note > 0:
             x = self.note % 10 - 1
             y = self.note // 10 - 1
 
             return Coord(x, y)
-        else:
-            raise ValueError("Message has no note attribute")
+
+        raise ValueError("Message has no note attribute")
 
     def __str__(self) -> str:
-        return self.message.__str__()        
+        return self.message.__str__()

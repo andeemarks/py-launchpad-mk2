@@ -1,3 +1,4 @@
+from enum import Enum
 import mido
 
 from .message import BasicMessage, FlashMessage, SysexMessage, PulseMessage
@@ -5,7 +6,6 @@ from .colour import Colour, RGBColour
 from .pad import PadInput
 from .coord import Coord
 
-from enum import Enum
 
 CHANNEL = 0
 TIME = 0
@@ -27,10 +27,10 @@ class Launchpad():
 
     def handler(self, message: mido.Message):
         input = PadInput(message)
-                
-        if (self.input_handler_callback):
+
+        if self.input_handler_callback:
             self.input_handler_callback(input)
-        else: 
+        else:
             print(message)
 
     def cell_on(self, coord: Coord, colour: Colour):
@@ -82,5 +82,5 @@ class Launchpad():
 
     def cell_rgb(self, coord: Coord, rgb: RGBColour):
         message = SysexMessage()
-        message.data += (11, 11 + coord.to_offset(), rgb.r, rgb.g, rgb.b)
+        message.data += (11, 11 + coord.to_offset(), rgb.red, rgb.green, rgb.blue)
         self.output.send(message)

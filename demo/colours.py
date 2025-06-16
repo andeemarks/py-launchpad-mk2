@@ -1,8 +1,7 @@
 import time
 
 from launchpad.launchpad import Launchpad
-from launchpad.pad import PadInput
-from launchpad.colour import Colour, RGBColour
+from launchpad.colour import RGBColour
 from launchpad.coord import Coord
 
 def coord_to_color(x: int, y: int) -> int:
